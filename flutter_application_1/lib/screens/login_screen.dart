@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  final dynamic station; // só pra manter sua assinatura atual, se não precisar pode remover
+  final dynamic
+  station; // só pra manter sua assinatura atual, se não precisar pode remover
   const LoginScreen({super.key, this.station});
 
   @override
@@ -24,18 +25,17 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _submit() async {
-  if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) return;
 
-  // Fechar teclado
-  FocusScope.of(context).unfocus();
+    // Fechar teclado
+    FocusScope.of(context).unfocus();
 
-  // Navegar para o Dashboard
-  Navigator.of(context).pushReplacementNamed('/dashboard');
-}
-
+    // Navegar para o Dashboard
+    Navigator.of(context).pushReplacementNamed('/dashboard');
+  }
 
   void _goRecoveryOrRegister() {
-    // TODO: navegar para /recovery ou /register
+    Navigator.of(context).pushNamed('/recovery');
   }
 
   @override
@@ -61,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start, // >>> esquerda
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // >>> esquerda
                     children: [
                       // Cabeçalho (ícone pequeno + "Login") alinhado à esquerda
                       Row(
@@ -70,13 +71,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              const Icon(Icons.cloud_outlined, size: 32, color: primary),
+                              const Icon(
+                                Icons.cloud_outlined,
+                                size: 32,
+                                color: primary,
+                              ),
                               // “sinais” desenhados por cima pra lembrar o mock
                               SizedBox(
                                 width: 48,
                                 height: 48,
                                 child: CustomPaint(
-                                  painter: _SignalPainter(color: primary.withOpacity(0.65)),
+                                  painter: _SignalPainter(
+                                    color: primary.withOpacity(0.65),
+                                  ),
                                 ),
                               ),
                             ],
@@ -110,13 +117,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _userCtrl,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: text, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: const TextStyle(
+                          color: text,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: input,
                           hintText: 'XXXXXX@email.com',
-                          hintStyle: const TextStyle(color: muted, fontWeight: FontWeight.w600),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                          hintStyle: const TextStyle(
+                            color: muted,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 18,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(28),
                             borderSide: BorderSide.none,
@@ -127,10 +144,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(28),
-                            borderSide: const BorderSide(color: primary, width: 1),
+                            borderSide: const BorderSide(
+                              color: primary,
+                              width: 1,
+                            ),
                           ),
                         ),
-                        validator: (v) => (v == null || v.trim().isEmpty) ? 'Informe o usuário/e-mail' : null,
+                        validator: (v) => (v == null || v.trim().isEmpty)
+                            ? 'Informe o usuário/e-mail'
+                            : null,
                       ),
 
                       const SizedBox(height: 20),
@@ -152,17 +174,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: _obscure,
                         textInputAction: TextInputAction.done,
                         onFieldSubmitted: (_) => _submit(),
-                        style: const TextStyle(color: text, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: const TextStyle(
+                          color: text,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: input,
                           hintText: '************',
-                          hintStyle: const TextStyle(color: muted, fontWeight: FontWeight.w600, letterSpacing: 1.2),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                          hintStyle: const TextStyle(
+                            color: muted,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.2,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 18,
+                          ),
                           suffixIcon: IconButton(
-                            onPressed: () => setState(() => _obscure = !_obscure),
+                            onPressed: () =>
+                                setState(() => _obscure = !_obscure),
                             icon: Icon(
-                              _obscure ? Icons.visibility : Icons.visibility_off,
+                              _obscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: muted,
                             ),
                           ),
@@ -176,7 +212,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(28),
-                            borderSide: const BorderSide(color: primary, width: 1),
+                            borderSide: const BorderSide(
+                              color: primary,
+                              width: 1,
+                            ),
                           ),
                         ),
                         validator: (v) {
@@ -225,10 +264,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               child: _loading
                                   ? const SizedBox(
-                                      width: 22, height: 22,
-                                      child: CircularProgressIndicator(strokeWidth: 2),
+                                      width: 22,
+                                      height: 22,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ),
                                     )
-                                  : const Icon(Icons.arrow_forward_rounded, size: 26, color: Colors.white),
+                                  : const Icon(
+                                      Icons.arrow_forward_rounded,
+                                      size: 26,
+                                      color: Colors.white,
+                                    ),
                             ),
                           ),
                         ],

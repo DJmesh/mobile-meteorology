@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/dashboard_screen.dart';
+import 'screens/recovery_screen.dart';
 
 // Paleta da tela de login (mockup)
 class AppColors {
@@ -117,6 +118,8 @@ class MyApp extends StatelessWidget {
         '/home': (_) => HomeScreen(),
         '/login': (_) => LoginScreen(station: station),
         '/dashboard': (_) => DashboardScreen(data: station),
+        '/recovery': (_) => const RecoveryScreen(), // <-- nova rota
+
       },
     );
   }
