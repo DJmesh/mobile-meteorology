@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard_screen.dart';
 import 'login_screen.dart'; // Importe a tela de login
 
 class HomeScreen extends StatelessWidget {
@@ -38,7 +39,19 @@ class HomeScreen extends StatelessWidget {
                   // Navega para a tela de login ao clicar em Iniciar
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(
+                        station: StationData(
+                          temperature: 25.4,
+                          humidity: 67.0,
+                          windSpeed: 12.3,
+                          pressure: 1012,
+                          rain: 1.5,
+                          luminosity: 850,
+                          history: {}, // pode deixar vazio por enquanto
+                        ),
+                      ),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
